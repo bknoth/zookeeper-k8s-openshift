@@ -39,6 +39,8 @@ RUN set -ex; \
     addgroup sudo; \
     adduser -h $ZOO_HOME -g "Zookeeper user" -s /sbin/nologin -D -G $ZOO_GROUP -G sudo $ZOO_USER; \
     chown -R $ZOO_USER:$ZOO_GROUP $ZOO_HOME; \
+    chgrp -R 0 $ZOO_HOME; \
+    chmod -R g+rwX $ZOO_HOME; \
     ln -s $ZOO_HOME/bin/zk_*.sh /usr/bin
 
 USER $ZOO_USER
